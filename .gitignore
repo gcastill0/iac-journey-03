@@ -1,0 +1,9 @@
+# Any secrets in the local development enviornment
+secrets
+*.pem
+
+# Anything with Terraform
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
