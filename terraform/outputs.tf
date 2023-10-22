@@ -14,3 +14,11 @@ output "subnet_cidr_blocks" {
 output "vpc_subnet_pair" {
   value = random_shuffle.vpc_subnet_pair.result
 }
+
+output "aws_lb_url" {
+    value = aws_lb.lb.dns_name
+}
+
+output "app_url" {
+    value = "http://${aws_lb.lb.dns_name}"
+}
