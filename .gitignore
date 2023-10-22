@@ -1,9 +1,34 @@
-# Any secrets in the local development enviornment
+############################
+# Any secrets in the local 
+# development enviornment
+############################
 secrets
-*.pem
 
-# Anything with Terraform
-.terraform
+############################
+# Terraform state files    
+############################
 terraform.tfstate
 terraform.tfstate.backup
-.terraform.lock.hcl
+.terraform.tfstate.lock.info
+
+############################
+# Terraform provider files 
+############################
+.terraform
+
+############################
+# Terraform lock file 
+############################
+*.terraform.lock.hcl
+
+############################
+# Anything with SSH 
+############################
+.ssh
+*.pem
+
+############################
+# MacOS generated files 
+############################
+.DS_Store
+.DS_Store?
