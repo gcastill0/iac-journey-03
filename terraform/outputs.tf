@@ -16,9 +16,9 @@ output "vpc_subnet_pair" {
 }
 
 output "aws_lb_url" {
-    value = aws_lb.lb.dns_name
+  value = aws_lb.lb.dns_name
 }
 
 output "app_url" {
-    value = "http://${aws_lb.lb.dns_name}"
+  value = "http://${aws_lb.lb.dns_name}"
 }

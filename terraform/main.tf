@@ -178,10 +178,18 @@ resource "aws_launch_template" "lt" {
   key_name      = aws_key_pair.main.key_name
   user_data     = filebase64("${path.module}/templates/user-data.bash.tpl")
 
-  vpc_security_group_ids = [
-    aws_security_group.happy_bird_egress.id,
-    aws_security_group.happy_bird_ingress.id
-  ]
+  # vpc_security_group_ids = [
+  #   aws_security_group.happy_bird_egress.id,
+  #   aws_security_group.happy_bird_ingress.id
+  # ]
+
+  network_interfaces {
+    security_groups = [
+      aws_security_group.happy_bird_egress.id,
+      aws_security_group.happy_bird_ingress.id
+    ]
+    associate_public_ip_address = true
+  }
 
   metadata_options {
     http_endpoint               = "enabled"
@@ -203,12 +211,13 @@ resource "aws_launch_template" "lt" {
     enabled = true
   }
 
-    tags = merge({
-      "Name"          = "happy-animals-ec2-launch-template"
-      },
-      var.tags
-    )
+  tags = merge({
+    "Name" = "happy-animals-ec2-launch-template"
+    },
+    var.tags
+  )
 }
+
 
 resource "aws_lb" "lb" {
   name                             = "happy-bird-lb"
