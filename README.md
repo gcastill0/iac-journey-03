@@ -1,4 +1,4 @@
-# iac-journey-03
+# IaC Journey 03
 
 Provide Cloud Identity credentials.
 ```bash
