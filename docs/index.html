@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IaC Journey 03</title>
+    <script src="js/main.js"></script>
+    <style>
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        main {
+            width: 1280px;
+            aspect-ratio: 16 / 9;
+            display: flex;
+            flex-direction: row;
+        }
+        section {
+            border: 1px lightblue dotted;
+            display: flex;
+        }
+        main section:first-child {
+            width: 780px;
+            align-items: center;
+            justify-content: center;
+        }
+        main section:last-child {
+            width: calc(100% - 780px);
+        }
+
+</style>
+</head>
+
+<body>
+    <main>
+        <section id="topology">
+            
+        </section>
+        <section></section>
+    </main>
+</body>
+
+</html>
