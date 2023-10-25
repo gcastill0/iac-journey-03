@@ -16,7 +16,7 @@ window.onload = function () {
 
     let counter = 0;
 
-    const target_groups = ["region", "vpc", "az-all", "security-group", "ec2", "icon-alb", "users"]
+    const target_groups = ["aws", "region", "vpc", "az-all", "security-group", "ec2", "icon-alb", "users"]
 
     function waitForSVGElement(selector) {
         return new Promise(resolve => {
@@ -42,34 +42,20 @@ window.onload = function () {
         document.getElementById("aws").style.display = "block"
     })
 
-    console.table(target_groups)
-
     document.addEventListener('keydown', (e) => {
-
-        if (counter > target_groups.length - 1) {
-            console.log("from", counter, "to", target_groups.length - 1)
-            counter = target_groups.length - 1
-        } else if (counter <= 0) {
-            console.log("from", counter, "to", 0)
-            counter = 0
-        }
-
-        console.log("Current:", counter, target_groups[counter])
 
         switch (e.key) {
             case "ArrowRight":
-                // setActive(counter)
+                counter = (counter < target_groups.length - 1) ? counter + 1 : target_groups.length - 1
                 document.getElementById(target_groups[counter]).style.display = "block"
-                counter++
                 break
+
             case "ArrowLeft":
-                // setInactive(counter)
+                if (counter == 0) break
                 document.getElementById(target_groups[counter]).style.display = "none"
-                counter--
+                counter = (counter > 1) ? counter - 1 : 0
                 break
         }
-
-        console.log("Next:", counter, target_groups[counter], "\n")
 
     })
 
