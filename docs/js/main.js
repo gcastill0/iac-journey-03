@@ -16,7 +16,7 @@ window.onload = function () {
 
     let counter = 0;
 
-    const target_groups = ["aws", "region", "vpc", "az-all", "security-group", "ec2", "icon-alb", "users"]
+    const target_groups = ["aws", "region", "vpc", "az-all", "security-group", "ec2", "alb", "users"]
 
     function waitForSVGElement(selector) {
         return new Promise(resolve => {

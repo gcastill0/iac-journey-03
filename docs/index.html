@@ -30,32 +30,43 @@
             display: flex;
             flex-direction: row;
         }
+
         section {
             border: 1px lightblue dotted;
             display: flex;
         }
+
         main section:first-child {
-            width: 780px;
+            width: 100%;
+            /* width: 780px; */
             align-items: center;
             justify-content: center;
-        }
-        main section:last-child {
-            width: calc(100% - 780px);
+            transition: all 500ms;
         }
 
-        #region, #vpc, #az-all, #security-group, #ec2, #icon-alb, #users {
+        /* main section:last-child {
+            width: calc(100% - 780px);
+        } */
+
+        #aws,
+        #region,
+        #vpc,
+        #az-all,
+        #security-group,
+        #ec2,
+        #alb,
+        #users {
             display: none;
         }
-
-</style>
+    </style>
 </head>
 
 <body>
     <main>
         <section id="topology">
-            
+
         </section>
-        <section></section>
+        <!-- <section></section> -->
     </main>
 </body>
 
