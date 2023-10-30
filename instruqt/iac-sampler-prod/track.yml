@@ -1,0 +1,25 @@
+slug: iac-sampler
+id: njfdso2vxbrh
+title: IaC Sampler
+description: |-
+  Explore different methods of deploying infrastructure and compare advantages and trade-offs.
+
+  **This track demonstrates how to do the following:**
+
+  - Deploy AWS resources using the AWS EC2 CLI
+  - Introduce AWS CloudFormation templates
+  - Build and release using infrastructure-as-code with Terraform
+  - Comoditize IaC collections with Terraform modules
+  - Explore AI code-generation
+icon: https://cdn.instruqt.com/assets/templates/aws.png
+tags: []
+owner: instruqt-training
+developers:
+- gilberto.castillo@rogers.com
+show_timer: true
+skipping_enabled: true
+lab_config:
+  overlay: false
+  width: 33
+  position: right
+checksum: "8908098582172349780"
