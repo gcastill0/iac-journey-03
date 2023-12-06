@@ -13,7 +13,6 @@ benefits, and some common tools and concepts used in IT automation.
 - Laptops or devices with internet access
 - None
 
-
 ## Introduction
 > "What repetitive tasks do you perform on your computer or smartphone regularly?"
 
