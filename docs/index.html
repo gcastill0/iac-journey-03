@@ -1,138 +1,329 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IaC Journey 03</title>
-    <script src="js/main.js"></script>
-    <style>
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-        body {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+	<title>Infrastructure Automation</title>
 
-        main {
-            width: 1280px;
-            min-height: 720px;
-            aspect-ratio: 16 / 9;
-            display: flex;
-            flex-direction: row;
-        }
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/white-contrast.css">
 
-        section {
-            border: 1px lightblue dotted;
-            display: flex;
-        }
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
 
-        main section:first-child {
-            width: 100%;
-            width: 780px;
-            max-width: 780px;
-            align-items: center;
-            justify-content: space-around;
-            flex-direction: column;
-            transition: all 500ms;
-        }
+	<style>
+		.about-me {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
 
-        main section:last-child {
-            width: calc(100% - 780px);
-            flex-direction: column;
-            justify-content: center;
-            transition: all 500ms;
-        }
+		.about-me-bio {
+			padding-left: 50px;
+			text-align: left;
+		}
 
-        #aws,
-        #region,
-        #vpc,
-        #az-all,
-        #security-group,
-        #ec2,
-        #alb,
-        #users {
-            display: none;
-        }
+		.orchestration {
+			display: flex;
+			flex-wrap: wrap;
+			background-color: lightblue;
+			padding: 20px;
+			border-radius: 10px;
+			justify-content: space-around;
+			gap: 20px;
+			min-width: 800px;
+			min-height: 50px;
+		}
 
-        h1 {
-            font-size: calc(1.425rem + 2.1vw);
-        }
+		.task {
+			display: flex;
+			padding: 10px 20px;
+			min-width: 800px;
+			min-height: 50px;
+			background-color: lightcyan;
+			justify-content: center;
+			align-items: center;
+			border-radius: 10px;
+			gap: 20px;
+		}
 
-        ul {
-            padding: 40px;
-        }
+		.step {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 200px;
+			height: 50px;
+			padding: 20px;
+			color: white;
+			background-color: darkslategrey;
+			border-radius: 10px;
+		}
+	</style>
 
-        li {
-            padding: 20px;
-            font-size: 1.25rem;        
-        }
-
-        .topology {
-            width: 100%;
-            height: calc(100% - 100px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .topology svg {
-            height: calc(100% - 100px);
-        }
-        .buttons {
-            display: flex;
-            gap: 20px;
-        }
-        .bt-pic {
-            width: 50px;
-            height: 50px;
-
-            /* border: 1px #222 dotted;
-            border-radius: 50%; */
-        }
-
-        .bt-pic:hover {
-            background-color: lightcoral;
-            cursor: pointer;
-        }
-
-</style>
 </head>
 
 <body>
-    <main>
-        <section>
-            <div class="topology" id="topology"></div>
-            <div class="buttons">
-                <div class="bt-pic" id="right-to-left">
-                    <img src="img/right-to-left.svg" id="button_01" alt="">
-                </div>
-                <div class="bt-pic" id="top-to-bottom">
-                    <img src="img/top-to-bottom.svg" id="button_02" alt="">
-                </div>
-                <div class="bt-pic" id="left-to-right">
-                    <img src="img/left-to-right.svg" id="button_03" alt="">
-                </div>
-            </div>
-        </section>
-        <section>
-            <h1>Lorem ipsum dolor</h1>
-            <ul>
-                <li>Aliquid earum iste provident quia dolor nobis deserunt soluta</li>
-                <li>P`erspiciatis ab possimus quidem alias facilis voluptate perferendis</li>
-                <li>Ipsa numquam ipsum deleniti. Cupiditate?</li>
-            </ul>
-        </section>
-    </main>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>Infrastructure Automation</h1>
+			</section>
+			<section>
+				<div class="about-me">
+					<img src="images/headshot.svg" alt="">
+					<div class="about-me-bio">
+						<p><strong>About me</strong></p>
+						<p>
+							My name is Gilberto. I am an experienced technologist
+							with skills in front-end development, observability
+							practices, and infrastructure automation.
+						</p>
+
+					</div>
+				</div>
+			</section>
+			<section>
+				<h2>Objective</h2>
+				<p>By the end of this lesson, you will:</p>
+				<ul>
+					<li>Have a stronger understanding of IaC, </li>
+					<li>List benefits of infrastructure automation</li>
+					<li>Use some common tools and concepts</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Prerequisites</h2>
+				<ul>
+					<li>Familiarity Cloud Computing concepts</li>
+					<li>Basic knowledge of Infrastructure-as-Code</li>
+					<li>Exposure to app deployment processes</li>
+				</ul>
+			</section>
+			<section data-background-color="#E1EBEF">
+				<h1>Key Concepts</h1>
+			</section>
+			<section data-auto-animate>
+				<h2>Workflow Orchestration</h2>
+				<ul>
+					<li>Coordinates tasks in an orderly sequence </li>
+					<li>Ensures that tasks are executed in the correct order</li>
+					<li>Reacts according to IFTTT conditions</li>
+					<li>It involves both <u>manual</u> and <u>automated</u> steps</li>
+				</ul>
+			</section>
+			<section data-auto-animate>
+				<h2>Workflow Orchestration</h2>
+				<p>It is a set of sequences of tasks, and data processes between those tasks</p>
+				<img src="images/application_baseline.svg" alt="Example: Multi-tier application">
+			</section>
+			<section data-auto-animate>
+				<h2>Workflow Orchestration</h2>
+				<ul>
+					<li>Orchestration is configuring, managing, and coordinating infrastructure,
+						software applications and services
+					</li>
+					<li>
+						Orchestration is focused on coordinating automated tasks to work together
+					</li>
+					<li>Automated tasks provide predictable results while executing repetable tasks
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Infrastructure Automation</h2>
+				<ul>
+					<li>Sets up individual tasks to run on their own</li>
+					<li>Builds an asset in the IT supply chain</li>
+					<li>Improves collective efficiencies when combined</li>
+					<hr>
+					<li>All industries and sizes look to automation to increase efficiency at scale</li>
+				</ul>
+			</section>
+			<section data-auto-animate>
+				<div class="orchestration" data-id="o1">
+					<p>Orchestration Pipeline</p>
+				</div>
+			</section>
+			<section data-auto-animate>
+				<div class="orchestration" data-id="o1">
+					<p>Orchestration Pipeline</p>
+					<div class="task" data-id="t1">
+						<p>Infrastructure Automation</p>
+					</div>
+				</div>
+			</section>
+			<section data-auto-animate>
+				<div class="orchestration" data-id="o1">
+					<p>Orchestration Pipeline</p>
+					<div class="task" data-id="t1">
+						<p>Infrastructure Automation</p>
+						<div class="step" data-id="s11">
+							<p>1.1</p>
+						</div>
+						<div class="step" data-id="s12">
+							<p>1.2</p>
+						</div>
+						<div class="step" data-id="s13">
+							<p>1.3</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section data-auto-animate>
+				<p>Orchestration Pipeline</p>
+				<div class="orchestration" data-id="o1">
+					<div class="task" data-id="t1">
+						<p>Compute Automation</p>
+						<div class="step" data-id="s11">
+							<p>1.1</p>
+						</div>
+						<div class="step" data-id="s12">
+							<p>1.2</p>
+						</div>
+						<div class="step" data-id="s13">
+							<p>1.3</p>
+						</div>
+					</div>
+					<div class="task" data-id="t2">
+						<p>Network Automation</p>
+						<div class="step" data-id="s21">
+							<p>2.1</p>
+						</div>
+						<div class="step" data-id="s22">
+							<p>2.2</p>
+						</div>
+						<div class="step" data-id="s23">
+							<p>2.3</p>
+						</div>
+					</div>
+					<div class="task" data-id="t3">
+						<p>Database Automation</p>
+						<div class="step" data-id="s31">
+							<p>3.1</p>
+						</div>
+						<div class="step" data-id="s32">
+							<p>3.4</p>
+						</div>
+						<div class="step" data-id="s33">
+							<p>3.5</p>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section data-background-color="#7E4BC6">
+				<h1>Infrastructure as-Code</h1>
+			</section>
+			<section>
+				<p>Terraform</p>
+				<img src="images/code_example.png" alt="">
+			</section>
+			<section>
+				<p>Terraform in action</p>
+				<img src="images/topology.svg" alt="">
+			</section>
+			<section data-background-color="#7E4BC6">
+				<h1>Testing 1, 2, 3...</h1>
+			</section>
+			<section>
+				<p>Unit Testing</p>
+				<img src="images/unit-testing.svg" alt="">
+			</section>
+			<section>
+				<p>Contract Testing</p>
+				<img src="images/contract-testing.svg" alt="">
+			</section>
+			<section>
+				<p>Integration Testing</p>
+				<img src="images/integration-testing.svg" alt="">
+			</section>
+			<section data-background-color="#7E4BC6">
+				<h1>CICD</h1>
+			</section>
+			<section>
+				<img src="images/terraform_cloud_cicd.svg" alt="">
+			</section>
+			<section data-background-color="#596979">
+				<h1>Summary</h1>
+			</section>
+			<section>
+				<ul>
+					<li class="fragment">Workflow: Includes all sequences like provisioning Cloud resources, deploying
+						application code, and testing the application</li>
+					<br>
+					<li class="fragment">Orchestrator: Manages the execution of each task, wether manual or automated
+					</li>
+					<br>
+					<li class="fragment">Tasks: Document how each step corresponds to a specific action, such as
+						launching an EC2 instance, uploading code to a repository, or configuring load balancers.
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Additional Defintions</h2>
+				<ul>
+					<li class="fragment"><strong>Service orchestration</strong> is broad approach to provide a complete
+						solution “as-a-service”
+					</li>
+					<br>
+					<li class="fragment"><strong>Cloud orchestration</strong> modern equivalent of infrastructure setup
+					 by system administrators using tools like Chef, Ansible, Puppet, and others
+					</li>
+					<br>
+					<li class="fragment"><strong>Release orchestration</strong> is a combination of deployment automation, pipeline and
+						environment management
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Reading Materials</h2>
+				<ul>
+					<li><a href="https://www.bmc.com/blogs/workflow-orchestration">BMC: Workflow Orchestration</a>
+					</li>
+					<li><a href="https://www.bmc.com/blogs/it-orchestration-vs-automation-whats-the-difference">BMC: IT
+							Automation vs Orchestration</a>
+					</li>
+
+					<li><a href="https://www.redhat.com/en/topics/automation/what-is-orchestration">RedHat: What is
+							orchestration?</a>
+					</li>
+
+					<li><a href="https://www.ibm.com/docs/en/cloud-orchestrator/2.5.0?topic=workflows-orchestration">IBM:
+							Orchestration workflows</a>
+					</li>
+
+				</ul>
+			</section>
+
+			<section data-background-color="#596979">
+				<h1>Resources</h1>
+				<ul>
+					<li><a href="https://github.com/gcastill0/iac-journey-03">GitHub: IaC Journey</a></li>
+					<li></li>
+					<li></li>
+				</ul>
+			</section>
+
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
+			slideNumber: 'c/t',
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
 </body>
 
 </html>
