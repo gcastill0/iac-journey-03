@@ -218,7 +218,19 @@
 			</section>
 			<section>
 				<p>Terraform</p>
-				<img src="images/code_example.png" alt="">
+				<pre>
+					<code data-trim data-noescape>
+						terraform {
+							required_providers {
+							  aws = {
+								source  = "hashicorp/aws"
+								version = "~> 5.0"
+							  }
+							}
+						}						  
+					</code>
+				</pre>
+				<!-- <img src="images/code_example.png" alt=""> -->
 			</section>
 			<section>
 				<p>Terraform in action</p>
