@@ -1,4 +1,3 @@
-# Lesson introduction 
 ## Infrastructure automation
 ### Objective
 By the end of this lesson, students will have a basic understanding of infrastructure automation, its
