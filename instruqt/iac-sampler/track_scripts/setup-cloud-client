@@ -1,0 +1,88 @@
+#!/bin/bash -l 
+
+set -euxo pipefail
+
+aws configure set region us-east-2 --profile default
+aws ec2 create-default-vpc || true
+
+until [ -f /opt/instruqt/bootstrap/host-bootstrap-completed ]; do
+    echo "Waiting for Instruqt bootstrap to complete"
+    sleep 1
+done
+
+apt update
+
+# Prepare Terraform deployment
+apt install wget curl unzip software-properties-common gnupg2 -y
+curl -fsSL https://apt.releases.hashicorp.com/gpg | apt-key add -
+apt-add-repository "deb [arch=$(dpkg --print-architecture)] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+apt update
+apt install terraform -y
+apt install tree -y
+
+# Deploy Pulumi
+curl -fsSL https://get.pulumi.com | sh
+
+
+# Deploy VSCode
+curl -fsSL https://code-server.dev/install.sh | sh
+
+# Assets used during the demo
+
+git clone https://github.com/gcastill0/iac-journey-01.git /root/base
+rm -fR /root/base/.git*
+
+# Put assets in the root directory.
+mv /root/base/* /root/.
+
+# We should see this file structure:
+#
+# ├── README.md
+# ├── aws
+# │   └── ec2_template.json
+# ├── base
+# ├── bash
+# │   ├── deploy-app.sh
+# │   └── init-script.sh
+# ├── terraform
+# │   ├── ec2instances.tf
+# │   ├── main.tf
+# │   └── variables.tf
+# └── vscode
+#     ├── README.md
+#     ├── code-server
+#     ├── extensions.json
+#     └── settings.json
+
+# Set up preferences for VSCode
+mkdir -p /root/.local/share/code-server/User
+mv /root/vscode/settings.json /root/.local/share/code-server/User/settings.json
+
+mkdir -p /root/.vscode
+mv /root/vscode/extensions.json /root/.vscode/extensions.json
+
+# Create VSC startup script for sysvinit
+mv /root/vscode/code-server /etc/init.d/code-server
+
+# Start VSC
+echo "Sleeping for 10 seconds"
+chmod +x /etc/init.d/code-server
+service code-server start
+
+# Things we may not need
+
+rm -fR /root/base
+rm -fR /root/vscode
+
+# We use a permanent random number for the deployment id
+RANDY=$RANDOM
+
+while [[ -z "$RANDY" ]] ; do
+  RANDY=$RANDOM
+done
+
+# Set up the random number for deployment specificity
+echo $RANDY
+echo "export RANDY=${RANDY}" >> /root/.bashrc
+
+exit 0

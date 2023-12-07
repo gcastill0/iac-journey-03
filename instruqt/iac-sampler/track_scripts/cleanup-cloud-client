@@ -1,0 +1,14 @@
+#!/bin/bash
+# Clean up Terraform deployments
+
+export WORKING_DIR=/root/terraform/01
+cd $WORKING_DIR 
+terraform destroy -auto-approve
+
+export WORKING_DIR=/root/terraform/02
+cd $WORKING_DIR 
+terraform destroy -auto-approve
+
+export WORKING_DIR=/root/terraform/03/aws_s3_bucket
+cd $WORKING_DIR 
+terraform destroy -auto-approve
